@@ -16,7 +16,7 @@ public class P1HierarquiaMemoria {
         return soma;
     }
  
-    // Percorre coluna por coluna (laços invertidos: pula de linha a cada acesso)
+
     public static long somaPorColuna(int[][] matriz, int n) {
         long soma = 0;
         for (int j = 0; j < n; j++) {
@@ -27,7 +27,7 @@ public class P1HierarquiaMemoria {
         return soma;
     }
  
-    // Arredonda para 2 casas decimais (só para a saída ficar mais limpa)
+   
     public static double arredonda(double valor) {
         return Math.round(valor * 100) / 100.0;
     }
@@ -35,17 +35,16 @@ public class P1HierarquiaMemoria {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
  
-        System.out.println("=== P1 - Experimento de Hierarquia de Memória ===");
+        System.out.println("=== P1 - Experimento de Hierarquia de MemÃ³ria ===");
  
-        // Parâmetros informados pelo usuário
-        System.out.print("Número de repetições (mínimo 5): ");
+        System.out.print("NÃºmero de repetiÃ§Ãµes (mÃ­nimo 5): ");
         int repeticoes = entrada.nextInt();
         while (repeticoes < 5) {
-            System.out.print("Use pelo menos 5 repetições: ");
+            System.out.print("Use pelo menos 5 repetiÃ§Ãµes: ");
             repeticoes = entrada.nextInt();
         }
  
-        System.out.print("Quantos tamanhos de matriz (mínimo 3): ");
+        System.out.print("Quantos tamanhos de matriz (mÃ­nimo 3): ");
         int quantidade = entrada.nextInt();
         while (quantidade < 3) {
             System.out.print("Use pelo menos 3 tamanhos: ");
@@ -58,7 +57,6 @@ public class P1HierarquiaMemoria {
             tamanhos[k] = entrada.nextInt();
         }
  
-        // Guardam as médias de cada tamanho para montar a tabela no final
         double[] mediasLinha = new double[quantidade];
         double[] mediasColuna = new double[quantidade];
  
@@ -67,7 +65,7 @@ public class P1HierarquiaMemoria {
             System.out.println();
             System.out.println("--- Matriz " + n + " x " + n + " ---");
  
-            // Cria a matriz e preenche com 1 (a soma esperada é n * n)
+            
             int[][] matriz = new int[n][n];
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
@@ -84,7 +82,7 @@ public class P1HierarquiaMemoria {
                 long inicio = System.nanoTime();
                 somaLinha = somaPorLinha(matriz, n);
                 long fim = System.nanoTime();
-                double msLinha = (fim - inicio) / 1000000.0; // nanossegundos -> ms
+                double msLinha = (fim - inicio) / 1000000.0; 
  
                 inicio = System.nanoTime();
                 somaColuna = somaPorColuna(matriz, n);
@@ -94,14 +92,14 @@ public class P1HierarquiaMemoria {
                 totalLinha = totalLinha + msLinha;
                 totalColuna = totalColuna + msColuna;
  
-                System.out.println("Execução " + r + ": linha = " + arredonda(msLinha)
+                System.out.println("ExecuÃ§Ã£o " + r + ": linha = " + arredonda(msLinha)
                         + " ms | coluna = " + arredonda(msColuna) + " ms");
             }
  
             mediasLinha[t] = totalLinha / repeticoes;
             mediasColuna[t] = totalColuna / repeticoes;
  
-            // Conferência: as duas somas precisam ser iguais a n * n
+          
             long esperado = (long) n * n;
             if (somaLinha == esperado && somaColuna == esperado) {
                 System.out.println("Soma conferida: " + esperado + " (OK)");
@@ -111,9 +109,9 @@ public class P1HierarquiaMemoria {
             }
         }
  
-        // Tabela final: tempo médio x tamanho da matriz
+  
         System.out.println();
-        System.out.println("=== Resultado: tempo médio x tamanho ===");
+        System.out.println("=== Resultado: tempo mÃ©dio x tamanho ===");
         System.out.println("Tamanho\t\tLinha (ms)\tColuna (ms)\tColuna/Linha");
         for (int t = 0; t < quantidade; t++) {
             double razao = mediasColuna[t] / mediasLinha[t];
